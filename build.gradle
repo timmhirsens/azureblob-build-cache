@@ -1,0 +1,28 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.azure:azure-storage-blob:12.0.0-preview.1'
+    testImplementation 'junit:junit:4.12'
+}
+
+group = "de.timmhirsens.azureblobcache"
+version = "0.0.1"
+
+sourceCompatibility = 1.8
+
+gradlePlugin {
+    // Define the plugin
+    plugins {
+        azureblobcache {
+            id = 'de.timmhirsens.azureblobcache.caching'
+            implementationClass = 'de.timmhirsens.azureblobcache.AzureBlobBuildCachePlugin'
+        }
+    }
+}
