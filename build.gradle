@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
     id "org.sonarqube" version "2.7"
     id 'jacoco'
+    id 'com.gradle.plugin-publish' version '0.10.0'
 }
 
 repositories {
@@ -17,7 +18,7 @@ dependencies {
 }
 
 group = "de.timmhirsens.azureblobcache"
-version = "0.0.1"
+version = "0.0.1-rc0"
 
 sourceCompatibility = 1.8
 
@@ -26,9 +27,17 @@ gradlePlugin {
     plugins {
         azureblobcache {
             id = 'de.timmhirsens.azureblobcache.caching'
+            displayName = 'Azure Blob Storage Build Cache'
+            description = 'This is a Gradle build cache implementation that uses the Azure Blob Storage as a Storage backend for cache objects.'
             implementationClass = 'de.timmhirsens.azureblobcache.AzureBlobBuildCachePlugin'
         }
     }
+}
+
+pluginBundle {
+    website = 'https://github.com/fr1zle/azureblob-build-cache'
+    vcsUrl = 'https://github.com/fr1zle/azureblob-build-cache.git'
+    tags = ['build-cache', 'azure']
 }
 
 test {
