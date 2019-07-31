@@ -41,6 +41,6 @@ test {
 
 sonarqube {
     properties {
-        sonar.projectKey = "fr1zle_azureblob-build-cache"
+        property "sonar.projectKey", "fr1zle_azureblob-build-cache"
     }
 }
