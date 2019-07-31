@@ -11,12 +11,12 @@ import org.slf4j.LoggerFactory;
 
 public class AzureBlobBuildCachePlugin implements Plugin<Settings> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AzureBlobBuildCachePlugin.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AzureBlobBuildCachePlugin.class);
 
-    @Override
-    public void apply(Settings settings) {
-        LOGGER.info("Registering Azure-Blob-Storage build cache");
-        BuildCacheConfiguration buildCacheConfiguration = settings.getBuildCache();
-        buildCacheConfiguration.registerBuildCacheService(AzureBlobStorageBuildCache.class, AzureBlobStorageBuildCacheServiceFactory.class);
-    }
+	@Override
+	public void apply(Settings settings) {
+		LOGGER.info("Registering Azure-Blob-Storage build cache");
+		BuildCacheConfiguration buildCacheConfiguration = settings.getBuildCache();
+		buildCacheConfiguration.registerBuildCacheService(AzureBlobStorageBuildCache.class, AzureBlobStorageBuildCacheServiceFactory.class);
+	}
 }
