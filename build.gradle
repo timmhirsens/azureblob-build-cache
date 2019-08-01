@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
     id "org.sonarqube" version "2.7"
     id 'jacoco'
-    id 'com.gradle.plugin-publish' version '0.10.0'
+    id 'com.gradle.plugin-publish' version '0.10.1'
 }
 
 repositories {
