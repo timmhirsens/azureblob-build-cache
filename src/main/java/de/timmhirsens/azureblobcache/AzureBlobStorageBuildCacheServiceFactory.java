@@ -5,7 +5,8 @@ import java.net.Proxy;
 import java.net.ProxySelector;
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import javax.annotation.Nullable;
 
 import org.gradle.caching.BuildCacheService;
 import org.gradle.caching.BuildCacheServiceFactory;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import com.azure.core.http.HttpClient;
 import com.azure.core.http.ProxyOptions;
 import com.azure.storage.blob.ContainerClient;
+import com.azure.storage.blob.ContainerClientBuilder;
 import com.azure.storage.common.credentials.SharedKeyCredential;
 
 public class AzureBlobStorageBuildCacheServiceFactory implements BuildCacheServiceFactory<AzureBlobStorageBuildCache> {
@@ -23,33 +25,39 @@ public class AzureBlobStorageBuildCacheServiceFactory implements BuildCacheServi
 
 	@Override
 	public BuildCacheService createBuildCacheService(AzureBlobStorageBuildCache config, Describer describer) {
-		SharedKeyCredential sharedKeyCredentials = new SharedKeyCredential(config.getAccountName(), config.getAccountKey());
-		ContainerClient containerClient = createContainerClient(sharedKeyCredentials, config.getContainer());
+		SharedKeyCredential sharedKeyCredentials = null;
+		String accountName = config.getAccountName();
+		if (config.getAccountKey() != null) {
+			sharedKeyCredentials = new SharedKeyCredential(accountName, config.getAccountKey());
+		}
+		ContainerClient containerClient = createContainerClient(sharedKeyCredentials, accountName, config.getContainer());
 		return new AzureBlobStorageBuildCacheService(containerClient);
 	}
 
-	private ContainerClient createContainerClient(SharedKeyCredential sharedKeyCredentials, String container) {
-		String endpoint = String.format("https://%s.blob.core.windows.net", sharedKeyCredentials.accountName());
-		return ContainerClient
+	private ContainerClient createContainerClient(@Nullable SharedKeyCredential sharedKeyCredentials, String accountName, String container) {
+		String endpoint = String.format("https://%s.blob.core.windows.net", accountName);
+		ContainerClientBuilder builder = ContainerClient
 				.containerClientBuilder()
 				.endpoint(endpoint)
-				.credential(sharedKeyCredentials)
 				.containerName(container)
-				.httpClient(buildHttpClientFor(endpoint))
+				.httpClient(buildHttpClientFor(endpoint));
+		if (sharedKeyCredentials != null) {
+			builder.credential(sharedKeyCredentials);
+		}
+		return builder
 				.buildClient();
 	}
 
 	private HttpClient buildHttpClientFor(String endpoint) {
 		List<Proxy> proxies = ProxySelector.getDefault().select(URI.create(endpoint));
-		proxies = proxies.stream().filter(p -> p.type() == Proxy.Type.HTTP).collect(Collectors.toList());
-		if (!proxies.isEmpty()) {
-			List<Proxy> finalProxies = proxies;
-			return HttpClient.createDefault().proxy(() -> {
-				ProxyOptions proxyOptions = new ProxyOptions(ProxyOptions.Type.HTTP, (InetSocketAddress) finalProxies.get(0).address());
-				LOGGER.debug("Using Proxy {}", proxyOptions.address());
-				return proxyOptions;
-			});
-		}
-		return HttpClient.createDefault();
+		return proxies.stream()
+				.filter(p -> p.type() == Proxy.Type.HTTP)
+				.findFirst()
+				.map(p -> HttpClient.createDefault().proxy(() -> {
+					ProxyOptions proxyOptions = new ProxyOptions(ProxyOptions.Type.HTTP, (InetSocketAddress) p.address());
+					LOGGER.debug("Using Proxy {}", proxyOptions.address());
+					return proxyOptions;
+				}))
+				.orElse(HttpClient.createDefault());
 	}
 }

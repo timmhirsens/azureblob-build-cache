@@ -28,7 +28,7 @@ gradlePlugin {
         azureblobcache {
             id = 'de.timmhirsens.azureblobcache.caching'
             displayName = 'Azure Blob Storage Build Cache'
-            description = 'This is a Gradle build cache implementation that uses the Azure Blob Storage as a Storage backend for cache objects.'
+            description = 'This is a Gradle build cache implementation that uses the Azure Blob Storage as a storage backend for cache objects.'
             implementationClass = 'de.timmhirsens.azureblobcache.AzureBlobBuildCachePlugin'
         }
     }

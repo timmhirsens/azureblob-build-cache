@@ -5,7 +5,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fr1zle_azureblob-build-cache&metric=alert_status)](https://sonarcloud.io/dashboard?id=fr1zle_azureblob-build-cache)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=fr1zle_azureblob-build-cache&metric=coverage)](https://sonarcloud.io/dashboard?id=fr1zle_azureblob-build-cache)
 
-This is a Gradle [build cache](https://docs.gradle.org/current/userguide/build_cache.html) implementation that uses the [Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/) as a Storage backend for 
+This is a Gradle [build cache](https://docs.gradle.org/current/userguide/build_cache.html) implementation that uses the [Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/) as a storage backend for 
 cache objects. It is inspired by the [S3 Build Cache Plugin](https://github.com/myniva/gradle-s3-build-cache).
 
 ## Usage
