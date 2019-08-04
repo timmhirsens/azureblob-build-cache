@@ -1,7 +1,7 @@
 # azureblob-build-cache
 
 [![Apache License 2.0](https://img.shields.io/badge/License-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-[![Build Status](https://travis-ci.com/fr1zle/azureblob-build-cache.svg?branch=master)](https://travis-ci.com/fr1zle/azureblob-build-cache)
+[![Build Status](https://timmhirsens.visualstudio.com/azureblob-build-cache/_apis/build/status/fr1zle.azureblob-build-cache?branchName=master)](https://timmhirsens.visualstudio.com/azureblob-build-cache/_build/latest?definitionId=2&branchName=master)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fr1zle_azureblob-build-cache&metric=alert_status)](https://sonarcloud.io/dashboard?id=fr1zle_azureblob-build-cache)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=fr1zle_azureblob-build-cache&metric=coverage)](https://sonarcloud.io/dashboard?id=fr1zle_azureblob-build-cache)
 
