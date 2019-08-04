@@ -27,4 +27,6 @@ steps:
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: true
     sqGradlePluginVersionChoice: 'build'
-
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
