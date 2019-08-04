@@ -36,11 +36,11 @@ apply plugin: 'de.timmhirsens.azureblobcache.caching'
 
 The following configuration settings are required for using this plugin.
 
-| Configuration Key | Description |
-|-------------------|-------------|
-| container | The name of the container in Azure Blob Storage where cache objects should be stored |
-| accountName | The account name to use for storing the objects |
-| accountKey | The account key for the account name (keep this secret) |
+| Configuration Key | Description | Required? |
+|-------------------|-------------|-----------|
+| container | The name of the container in Azure Blob Storage where cache objects should be stored | **yes** |
+| accountName | The account name to use for storing the objects | **yes** |
+| accountKey | The account key for the account name (keep this secret) | **no** (the azure blob storage container has to be configured accordingly)|
 
 An configuration may look like this:
 

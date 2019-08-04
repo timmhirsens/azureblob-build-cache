@@ -18,7 +18,7 @@ dependencies {
 }
 
 group = "de.timmhirsens.azureblobcache"
-version = "0.0.1-rc0"
+version = "0.1.0"
 
 sourceCompatibility = 1.8
 
