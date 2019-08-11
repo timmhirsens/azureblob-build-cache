@@ -11,6 +11,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.net.URI;
 import java.net.URL;
 
@@ -72,7 +73,7 @@ class AzureBlobStorageBuildCacheServiceTest {
 		URL blobUrl = URI.create("http://localhost/my/blob").toURL();
 		when(blobClient.getBlobUrl()).thenReturn(blobUrl);
 		when(blobClient.exists()).thenReturn(new SimpleResponse<>(new HttpRequest(HttpMethod.GET, blobUrl), 200, new HttpHeaders(), true));
-		when(blobClient.download(any())).thenThrow(IOException.class);
+		when(blobClient.download(any())).thenThrow(UncheckedIOException.class);
 		BuildCacheEntryReader cacheEntryReader = mock(BuildCacheEntryReader.class);
 		assertThrows(BuildCacheException.class, () -> service.load(new TestBuildCacheKey(), cacheEntryReader));
 	}
