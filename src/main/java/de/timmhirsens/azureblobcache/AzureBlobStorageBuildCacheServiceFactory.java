@@ -36,8 +36,7 @@ public class AzureBlobStorageBuildCacheServiceFactory implements BuildCacheServi
 
 	private ContainerClient createContainerClient(@Nullable SharedKeyCredential sharedKeyCredentials, String accountName, String container) {
 		String endpoint = String.format("https://%s.blob.core.windows.net", accountName);
-		ContainerClientBuilder builder = ContainerClient
-				.containerClientBuilder()
+		ContainerClientBuilder builder = new ContainerClientBuilder()
 				.endpoint(endpoint)
 				.containerName(container)
 				.httpClient(buildHttpClientFor(endpoint));
