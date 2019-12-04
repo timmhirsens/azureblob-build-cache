@@ -6,18 +6,17 @@ import com.azure.core.http.netty.NettyAsyncHttpClientBuilder;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
 import com.azure.storage.common.StorageSharedKeyCredential;
-import org.gradle.caching.BuildCacheService;
-import org.gradle.caching.BuildCacheServiceFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.annotation.Nullable;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.ProxySelector;
 import java.net.URI;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Nullable;
+import org.gradle.caching.BuildCacheService;
+import org.gradle.caching.BuildCacheServiceFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AzureBlobStorageBuildCacheServiceFactory
     implements BuildCacheServiceFactory<AzureBlobStorageBuildCache> {

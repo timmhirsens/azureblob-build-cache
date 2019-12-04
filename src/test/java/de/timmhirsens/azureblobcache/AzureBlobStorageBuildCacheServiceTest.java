@@ -1,23 +1,22 @@
 package de.timmhirsens.azureblobcache;
 
-import com.azure.storage.blob.BlobContainerClient;
-import com.azure.storage.blob.specialized.BlockBlobClient;
-import org.gradle.caching.BuildCacheEntryReader;
-import org.gradle.caching.BuildCacheEntryWriter;
-import org.gradle.caching.BuildCacheException;
-import org.gradle.caching.BuildCacheKey;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.io.UncheckedIOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
+
+import com.azure.storage.blob.BlobContainerClient;
+import com.azure.storage.blob.specialized.BlockBlobClient;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import org.gradle.caching.BuildCacheEntryReader;
+import org.gradle.caching.BuildCacheEntryWriter;
+import org.gradle.caching.BuildCacheException;
+import org.gradle.caching.BuildCacheKey;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class AzureBlobStorageBuildCacheServiceTest {
 

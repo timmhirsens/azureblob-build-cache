@@ -1,10 +1,10 @@
 package de.timmhirsens.azureblobcache;
 
+import static org.mockito.Mockito.*;
+
 import org.gradle.api.initialization.Settings;
 import org.gradle.caching.configuration.BuildCacheConfiguration;
 import org.junit.jupiter.api.Test;
-
-import static org.mockito.Mockito.*;
 
 class AzureBlobBuildCachePluginTest {
 

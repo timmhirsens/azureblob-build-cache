@@ -1,16 +1,14 @@
 package de.timmhirsens.azureblobcache;
 
-import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.specialized.BlockBlobClient;
-import org.gradle.caching.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import org.gradle.caching.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AzureBlobStorageBuildCacheService implements BuildCacheService {
 
@@ -27,7 +25,8 @@ public class AzureBlobStorageBuildCacheService implements BuildCacheService {
   public boolean load(BuildCacheKey buildCacheKey, BuildCacheEntryReader buildCacheEntryReader)
       throws BuildCacheException {
     try {
-      BlockBlobClient blobClient = containerClient.getBlobClient(buildCacheKey.getHashCode()).getBlockBlobClient();
+      BlockBlobClient blobClient =
+          containerClient.getBlobClient(buildCacheKey.getHashCode()).getBlockBlobClient();
       LOGGER.debug("Downloading {}", blobClient.getBlobUrl());
       Boolean exists = blobClient.exists();
       if (!exists) {
