@@ -4,6 +4,7 @@ plugins {
     id "org.sonarqube" version "2.8"
     id 'jacoco'
     id 'com.gradle.plugin-publish' version '0.10.1'
+    id "com.diffplug.gradle.spotless" version "3.26.1"
 }
 
 repositories {
@@ -47,6 +48,11 @@ test {
     }
 }
 
+spotless {
+    java {
+        googleJavaFormat()
+    }
+}
 
 sonarqube {
     properties {
