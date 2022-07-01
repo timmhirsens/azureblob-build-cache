@@ -4,7 +4,7 @@ plugins {
     id "org.sonarqube" version "3.4.0.2513"
     id 'jacoco'
     id 'com.gradle.plugin-publish' version '0.20.0'
-    id "com.diffplug.spotless" version "6.7.2"
+    id "com.diffplug.spotless" version "6.8.0"
 }
 
 repositories {
