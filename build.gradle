@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.azure:azure-storage-blob:12.19.0")
+    implementation("com.azure:azure-storage-blob:12.20.3")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
     testImplementation("org.mockito:mockito-core:4.7.0")
     testCompile("org.assertj:assertj-core:3.23.1")
